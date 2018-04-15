@@ -3,12 +3,10 @@ Kotlin extension functions for converting temperature units
 
 #### Installation
 
-Add repository:
+Add `jCenter` repository:
 ```gradle
 repositories {
-    maven {
-        url  "https://dl.bintray.com/aednlaxer/Kotlin"
-    }
+    jcenter()
 }
 
 ```
