@@ -1,0 +1,53 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+apply from: 'keystore.gradle'
+
+ext {
+    groupId = 'com.aednlaxer.kold'
+    artifactId = "lib"
+    libVersion = "0.0.1"
+}
+version = libVersion
+group = groupId
+
+bintray {
+    user = 'aednlaxer'
+    key = bintray_key // Add your bintray_key to keystore.gradle
+    configurations = ['archives']
+    publish = true
+    override = false
+
+    pkg {
+        repo = "Kotlin"
+        name = "Kold"
+        version {
+            name = libVersion
+        }
+    }
+}
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'jar'
+            groupId groupId
+            artifactId artifactId
+            version libVersion
+            name artifactId
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
