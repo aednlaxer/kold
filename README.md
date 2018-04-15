@@ -3,7 +3,20 @@ Kotlin extension functions for converting temperature units
 
 #### Installation
 
-// TODO
+Add repository:
+```gradle
+repositories {
+    maven {
+        url  "https://dl.bintray.com/aednlaxer/Kotlin"
+    }
+}
+
+```
+
+And then add this to your dependencies:
+```
+compile 'com.aednlaxer.kold:lib:0.0.1'
+```
 
 #### How to use
 
