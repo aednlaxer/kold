@@ -1,5 +1,7 @@
 package com.aednlaxer.lib.units
 
+import java.text.DecimalFormat
+
 abstract class TemperatureUnit(protected val value: Double) {
   abstract fun toCelsius(): Double
   abstract fun toFahrenheit(): Double
@@ -12,8 +14,5 @@ abstract class TemperatureUnit(protected val value: Double) {
 
   abstract fun getSymbol(): String?
 
-  fun toString(decimalValues: Int): String =
-    String.format(".${decimalValues}f ${getSymbol() ?: ""}")
-
-  override fun toString() = toString(decimalValues = 2)
+  override fun toString() = "${DecimalFormat("#.##").format(value)} ${getSymbol() ?: ""}"
 }
